@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.micol.syperest.emp.service.EmpMapper">
+	<select id="findEmp" resultType="co.micol.syperest.emp.service.Emp">
+		SELECT * FROM employees
+	</select>
+	
+	<select id="findDept" resultType="co.micol.syperest.emp.service.Dept">
+		SELECT * FROM departments
+	</select>
+
+	<select id="findDeptByid" parameterType="String" resultType="co.micol.syperest.emp.service.Dept">
+		SELECT * FROM departments
+		where department_id = #{id}
+	</select>
+	
+	<update id="updateDept" parameterType="co.micol.syperest.emp.service.Dept">
+		update departments set
+			department_name = #{department_name}
+		where department_id = #{department_id}
+	</update>
+	
+	
+	<delete id="deleteDept" parameterType="String">
+		delete from departments
+			where department_id = #{value}
+	</delete>
+	
+	<insert id="insertDept" parameterType="co.micol.syperest.emp.service.Dept" >
+	insert into departments(
+		department_id,
+		department_name)
+	values(
+		#{department_id},
+		#{department_name})
+	</insert>
+		
+</mapper>
